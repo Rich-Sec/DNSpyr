@@ -21,7 +21,7 @@
     </form>
     <form action="/lookup" method="POST">
         <fieldset>
-          <h3>DNS Lookup</h3>
+          <h3>Simple DNS Lookup</h3>
           <label>Hostname</label>
           <input type="text" id="hostname" name="hostname" required>
           <label for="recordType">Record Type</label>
@@ -46,8 +46,12 @@
         fetch('/fetchLookupHistory')
         .then(response => response.json())
         .then(json => {
-            var result = JSON.stringify(json)
-            document.getElementById('lookupResult').innerHTML = result;
+            var result = JSON.stringify(json);
+            if (result == '[]'){
+              document.getElementById('lookupResult').innerHTML = "";
+            } else {
+              document.getElementById('lookupResult').innerHTML = result;
+            }
       });
     </script>
     </body>

@@ -38,7 +38,8 @@ app.post('/lookup', (req, res) =>{
 });
 
 app.get('/fetchLookupHistory', (req, res) =>{
-    res.send(lookupHistory);
+    var lastLookup = lookupHistory.slice(-2);
+    res.send(lastLookup);
 });
 
 server.listen(3000);
