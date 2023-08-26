@@ -9,29 +9,31 @@
     <header>
       <h1>DNSSpyr</h1>
     </header>
-    <form action="/add" method="POST">
-      <fieldset>
-        <h3>Add a new DNS Server</h3>
-        <label>Server IP Address</label>
-        <input type ="text" id = 'dnsIP' name="dnsIP" required>
-        <br><br>
-        <button type ="reset">Reset</button>
-        <button type ="submit">Submit</button>
-      </fieldset>
-    </form>
-    <form action="/lookup" method="POST">
+    <div id="mainview" name="mainview">
+      <form action="/add" method="POST">
         <fieldset>
-          <h3>Simple DNS Lookup</h3>
-          <label>Hostname</label>
-          <input type="text" id="hostname" name="hostname" required>
+          <h3>Add a new DNS Server</h3>
+          <label>Server IP Address</label>
+          <input type ="text" id = 'dnsIP' name="dnsIP" required>
           <br><br>
           <button type ="reset">Reset</button>
           <button type ="submit">Submit</button>
-          <br><br><br>
-          <p id="lookupResult" name="lookupResult"></p>
         </fieldset>
-       </form>
-       <footer>
+      </form>
+      <form action="/lookup" method="POST">
+          <fieldset>
+            <h3>Simple DNS Lookup</h3>
+            <label>Hostname</label>
+            <input type="text" id="hostname" name="hostname" required>
+            <br><br>
+            <button type ="reset">Reset</button>
+            <button type ="submit">Submit</button>
+            <br><br><br>
+            <p id="lookupResult" name="lookupResult"></p>
+          </fieldset>
+        </form>
+      </div>
+      <footer>
         <hr>
         <h4>Please enter the IP address of a DNS server to perform targeted lookups</h4>
       </footer>
