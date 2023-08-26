@@ -14,7 +14,7 @@
         <fieldset>
           <h3>Add a new DNS Server</h3>
           <label>Server IP Address</label>
-          <input type ="text" id = 'dnsIP' name="dnsIP" required>
+          <input type="text" id='dnsIP' name="dnsIP" required>
           <br><br>
           <button type ="reset">Reset</button>
           <button type ="submit">Submit</button>
@@ -32,10 +32,30 @@
             <p id="lookupResult" name="lookupResult"></p>
           </fieldset>
         </form>
+        <form action="/adv_lookup" method="POST">
+          <fieldset>
+            <h3>Advanced DNS Lookup</h3>
+            <label for="hostname">Hostname</label>
+            <input type="text" id="hostname" name="hostname" required>
+            <label for="recordType">Record Type</label>
+            <select name="recordType" id="recordType">
+              <option value="A" selected="selected">A</option>
+              <option value="AAAA">AAAA</option>
+              <option value="MX">MX</option>
+              <option value="NS">NS</option>
+              <option value="ANY">ANY</option>
+            </select>
+            <br><br>
+            <button type ="reset">Reset</button>
+            <button type ="submit">Submit</button>
+            <br><br><br>
+            <p name="resolveResult" id="resolveResult"></p>
+          </fieldset>
+        </form>
       </div>
       <footer>
         <hr>
-        <h4>Please enter the IP address of a DNS server to perform targeted lookups</h4>
+        <h4>Please enter the IP address of a DNS server to perform targeted (advanced) lookups, DNSpyr will use the DNS server you specified if you have not specified a DNS server please use "Simple DNS Lookup"</h4>
       </footer>
     <script>
         fetch('/fetchLookupHistory')
@@ -49,7 +69,7 @@
             }
       });
     </script>
-    </body>
+</body>
 </html>
 
     

@@ -13,6 +13,7 @@ app.use(express.static("public"));
 
 var dnsServers = [];
 var lookupHistory = [];
+var lookupResults = [];
 
 app.get('/', function(req,res){
   res.sendFile('index.html');
@@ -22,13 +23,14 @@ app.get('/', function(req,res){
 app.post('/add', function(req,res){
     dnsServers.push(req.body.dnsIP);
     console.log(`New DNS Server Added: ${req.body.dnsIP}`);
-    res.redirect('../')
+    res.redirect('../');
 });
 
 app.post('/lookup', (req, res) =>{
     dns.lookup(req.body.hostname, (err, addr) => {
       if (err){
         console.log(err);
+        res.redirect('../');
         return;
       }
     lookupHistory.push(req.body.hostname);
@@ -37,9 +39,28 @@ app.post('/lookup', (req, res) =>{
     });
 });
 
+app.post('/adv_lookup', (req, res) =>{
+    console.log(req.body.recordType);
+    console.log(req.body.hostname);
+    dns.resolve(req.body.hostname, req.body.recordType, (err, addr) => {
+      if (err){
+        console.log(err);
+        res.redirect('../');
+        return;
+      }
+      lookupResults = addr;
+      console.log(lookupResults);
+      res.redirect('../');
+    })
+});
+
 app.get('/fetchLookupHistory', (req, res) =>{
     var lastLookup = lookupHistory.slice(-2);
     res.send(lastLookup);
 });
+
+app.get('/fetchLookupResults'), (req, res) =>{
+    res.send(lookupResults);
+}
 
 server.listen(3000);
