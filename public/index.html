@@ -13,11 +13,13 @@
       <form action="/add" method="POST">
         <fieldset>
           <h3>Add a new DNS Server</h3>
-          <label>Server IP Address</label>
-          <input type="text" id='dnsIP' name="dnsIP" required>
+          <label for="dnsIP">Server IP Address</label>
+          <input type="text" id='dnsIP' name="dnsIP">
           <br><br>
-          <button type ="reset">Reset</button>
-          <button type ="submit">Submit</button>
+          <button type="reset">Reset</button>
+          <button type="submit">Submit</button>
+          <label>Clear DNS Server List</label>
+          <input type="checkbox" id="clear" name="clear">
         </fieldset>
       </form>
       <form action="/lookup" method="POST">
@@ -46,8 +48,8 @@
               <option value="ANY">ANY</option>
             </select>
             <br><br>
-            <button type ="reset">Reset</button>
-            <button type ="submit">Submit</button>
+            <button type="reset">Reset</button>
+            <button type="submit">Submit</button>
             <br><br><br>
             <p name="resolveResult" id="resolveResult"></p>
           </fieldset>
@@ -67,7 +69,7 @@
             } else {
               document.getElementById('lookupResult').innerHTML = result;
             }
-      });
+        });
     </script>
 </body>
 </html>
