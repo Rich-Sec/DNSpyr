@@ -17,10 +17,23 @@ h3{
 }
 form{
  width: 45%;
- display: inline-block;
+ display: block;
  margin: 20px;
 }
+
+#lookupResultsList{
+    overflow-y: scroll;
+    height: 500px;
+    padding-right: 15%;
+    float: right;
+    width: fit-content;
+    max-width: 100%;
+    white-space: nowrap;
+    display: block;
+}
+
 footer{
+ position: sticky;
  margin-top: 3%;
  text-align: center;
 }

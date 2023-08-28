@@ -9,6 +9,8 @@
     <header>
       <h1>DNSSpyr</h1>
     </header>
+    <div name="lookupResultsList" id="lookupResultsList">
+    </div>
     <div id="mainview" name="mainview">
       <form action="/add" method="POST">
         <fieldset>
@@ -31,7 +33,6 @@
             <button type ="reset">Reset</button>
             <button type ="submit">Submit</button>
             <br><br><br>
-            <p id="lookupResult" name="lookupResult"></p>
           </fieldset>
         </form>
         <form action="/adv_lookup" method="POST">
@@ -64,10 +65,18 @@
         .then(response => response.json())
         .then(json => {
             var result = JSON.stringify(json);
-            if (result == '[]'){
-              document.getElementById('lookupResult').innerHTML = "";
-            } else {
-              document.getElementById('lookupResult').innerHTML = result;
+            console.log(result);
+            var object = JSON.parse('{"lookups":['+result.substring(1, result.length-1)+']}');     
+            console.log(object.lookups.length);
+            console.log(object.lookups[0].hostname)
+            console.log(object.lookups[0].addr4)
+
+            element = document.getElementById("lookupResultsList");
+            for (var result = 0; result < object.lookups.length; result++){
+              var para = document.createElement("p");
+              const node = document.createTextNode(object.lookups[result].hostname +": " + object.lookups[result].addr4);
+              para.appendChild(node);
+              element.appendChild(para);
             }
         });
     </script>

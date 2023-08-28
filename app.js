@@ -7,6 +7,7 @@ const app = express();
 const server = http.createServer(app);
 const dns = require('node:dns');
 const { Resolver } = require('node:dns');
+const { lookup } = require('dns');
 const resolver = new Resolver();
 
 app.use(bodyParser.urlencoded({extended: false}));
@@ -21,7 +22,6 @@ app.get('/', function(req,res){
   res.sendFile('index.html');
 });
 
-// Add a DNS Server
 app.post('/add', function(req,res){
     try{
       var temp = [];
@@ -29,14 +29,14 @@ app.post('/add', function(req,res){
       resolver.setServers(temp);
     } catch (ERR_INVALID_IP_ADDRESS){
       if (req.body.clear == 'on'){
-        console.log("Clearing DNS Server List...");
-        dnsServers = [];
-        res.redirect('../');
-        return;
+          console.log("Clearing DNS Server List...");
+          dnsServers = [];
+          res.redirect('../');
+          return;
       } else {
-        console.log("Invalid IP :(");
-        res.redirect('../');
-        return;
+          console.log("Invalid IP :(");
+          res.redirect('../');
+          return;
       }
     }
     dnsServers.push(req.body.dnsIP);
@@ -46,6 +46,7 @@ app.post('/add', function(req,res){
     res.redirect('../');
 });
 
+// Fix output
 app.post('/lookup', (req, res) =>{
     dns.lookup(req.body.hostname, (err, addr) => {
       if (err){
@@ -53,12 +54,13 @@ app.post('/lookup', (req, res) =>{
         res.redirect('../');
         return;
       }
-    lookupHistory.push(req.body.hostname);
-    lookupHistory.push(addr);
+    var lookupResult = {hostname: req.body.hostname, addr4: addr}
+    lookupHistory.push(lookupResult)
     res.redirect('../');
     });
 });
 
+// To-Do: Allow users to implement reverse DNS lookups
 app.post('/adv_lookup', (req, res) =>{
     if (dnsServerSet == true){
         console.log(req.body.recordType);
@@ -78,9 +80,14 @@ app.post('/adv_lookup', (req, res) =>{
       }
 });
 
+// To-Do: Add function to list DNS servers
+
+// To-Do: Add file upload function that allows users to upload a list of DNS servers they want to use
+
+// To-Do: Add file upload function that allows users to enter a list of hostnames they want to resolve
+
 app.get('/fetchLookupHistory', (req, res) =>{
-    var lastLookup = lookupHistory.slice(-2);
-    res.send(lastLookup);
+    res.send(lookupHistory);
 });
 
 app.get('/fetchLookupResults'), (req, res) =>{
