@@ -64,13 +64,13 @@ app.post('/lookup', (req, res) =>{
 app.post('/adv_lookup', (req, res) =>{
     if (dnsServerSet == true){
         console.log(req.body.recordType);
-        resolver.resolve(req.body.hostname, req.body.recordType, (err, addr) => {
+        resolver.resolve(req.body.hostname, req.body.recordType, (err, result) => {
         if (err){
           console.log(err);
           res.redirect('../');
           return;
         }
-        lookupResults = addr;
+        lookupResults = result;
         console.log(lookupResults);
         res.redirect('../');
         })
@@ -90,8 +90,8 @@ app.get('/fetchLookupHistory', (req, res) =>{
     res.send(lookupHistory);
 });
 
-app.get('/fetchLookupResults'), (req, res) =>{
+app.get('/fetchLookupResults', (req, res) =>{
     res.send(lookupResults);
-}
+});
 
 server.listen(3000);

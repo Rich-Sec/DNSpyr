@@ -23,7 +23,7 @@ form{
 
 #lookupResultsList{
     overflow-y: scroll;
-    height: 500px;
+    height: 100px;
     padding-right: 15%;
     float: right;
     width: fit-content;

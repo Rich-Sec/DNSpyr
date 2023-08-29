@@ -11,6 +11,9 @@
     </header>
     <div name="lookupResultsList" id="lookupResultsList">
     </div>
+    <div name="advLookupResultsList" id="advLookupResultsList">
+      <p name="advLookupResult" id="advLookupResult"></p>
+    </div>
     <div id="mainview" name="mainview">
       <form action="/add" method="POST">
         <fieldset>
@@ -74,10 +77,19 @@
             element = document.getElementById("lookupResultsList");
             for (var result = 0; result < object.lookups.length; result++){
               var para = document.createElement("p");
-              const node = document.createTextNode(object.lookups[result].hostname +": " + object.lookups[result].addr4);
+              var node = document.createTextNode(object.lookups[result].hostname +": " + object.lookups[result].addr4);
               para.appendChild(node);
               element.appendChild(para);
             }
+        });
+    </script>
+    <script>
+      fetch('/fetchLookupResults')
+        .then(response => response.json())
+        .then(json => {
+            var result = JSON.stringify(json);
+            var object = JSON.parse('{"lookups":['+result.substring(1, result.length-1)+']}'); 
+            console.log(object.lookups[0].address)
         });
     </script>
 </body>
