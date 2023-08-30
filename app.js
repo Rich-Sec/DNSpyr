@@ -71,6 +71,7 @@ app.post('/adv_lookup', (req, res) =>{
           return;
         }
         lookupResults = result;
+        lookupResults.push(req.body.recordType)
         console.log(lookupResults);
         res.redirect('../');
         })
@@ -92,6 +93,7 @@ app.get('/fetchLookupHistory', (req, res) =>{
 
 app.get('/fetchLookupResults', (req, res) =>{
     res.send(lookupResults);
+    console.log(lookupResults);
 });
 
 server.listen(3000);

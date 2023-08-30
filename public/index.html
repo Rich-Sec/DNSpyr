@@ -12,7 +12,6 @@
     <div name="lookupResultsList" id="lookupResultsList">
     </div>
     <div name="advLookupResultsList" id="advLookupResultsList">
-      <p name="advLookupResult" id="advLookupResult"></p>
     </div>
     <div id="mainview" name="mainview">
       <form action="/add" method="POST">
@@ -63,35 +62,8 @@
         <hr>
         <h4>Please enter the IP address of a DNS server to perform targeted (advanced) lookups, DNSpyr will use the DNS server you specified if you have not specified a DNS server please use "Simple DNS Lookup"</h4>
       </footer>
-    <script>
-        fetch('/fetchLookupHistory')
-        .then(response => response.json())
-        .then(json => {
-            var result = JSON.stringify(json);
-            console.log(result);
-            var object = JSON.parse('{"lookups":['+result.substring(1, result.length-1)+']}');     
-            console.log(object.lookups.length);
-            console.log(object.lookups[0].hostname)
-            console.log(object.lookups[0].addr4)
-
-            element = document.getElementById("lookupResultsList");
-            for (var result = 0; result < object.lookups.length; result++){
-              var para = document.createElement("p");
-              var node = document.createTextNode(object.lookups[result].hostname +": " + object.lookups[result].addr4);
-              para.appendChild(node);
-              element.appendChild(para);
-            }
-        });
-    </script>
-    <script>
-      fetch('/fetchLookupResults')
-        .then(response => response.json())
-        .then(json => {
-            var result = JSON.stringify(json);
-            var object = JSON.parse('{"lookups":['+result.substring(1, result.length-1)+']}'); 
-            console.log(object.lookups[0].address)
-        });
-    </script>
+    <script src="resourceRequestSimple.js"></script>
+    <script src="resourceRequestAdvanced.js"></script>
 </body>
 </html>
 
