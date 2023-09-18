@@ -22,25 +22,20 @@ form{
 }
 
 #lookupResultsList{
-    overflow-y: scroll;
-    height: 100px;
-    padding-right: 15%;
-    float: right;
-    width: fit-content;
-    max-width: 100%;
-    white-space: nowrap;
-    display: block;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    flex-direction: column;
 }
 
 #advLookupResultsList{
-    overflow-y: scroll;
-    height: 100px;
-    padding-right: 0%;
-    float: right;
-    width: fit-content;
-    max-width: 100%;
-    white-space: nowrap;
-    display: block;    
+    display: grid;
+    place-items: right;   
+}
+
+#mainview{
+    display: grid;
+    place-items: center;
 }
 
 footer{
