@@ -16,31 +16,22 @@ h3{
  background-color: #80bfff;
 }
 form{
- width: 45%;
- display: block;
- margin: 20px;
+    width: 45%;
+    display: block;
+    margin: 20px;
 }
 
 #lookupResultsList{
     overflow-y: scroll;
     height: 100px;
     padding-right: 15%;
+    padding-left: 60%;
     float: right;
     width: fit-content;
     max-width: 100%;
     white-space: nowrap;
     display: block;
-}
-
-#advLookupResultsList{
-    overflow-y: scroll;
-    height: 100px;
-    padding-right: 0%;
-    float: right;
-    width: fit-content;
-    max-width: 100%;
-    white-space: nowrap;
-    display: block;    
+    position: fixed;
 }
 
 footer{
