@@ -9,10 +9,9 @@
     <header>
       <h1>DNSSpyr</h1>
     </header>
-    <div name="lookupResultsList" id="lookupResultsList">
-    </div>
     <div name="advLookupResultsList" id="advLookupResultsList">
     </div>
+    <p name="resolveResult" id="resolveResult"></p>
     <div id="mainview" name="mainview">
       <form action="/add" method="POST">
         <fieldset>
@@ -35,6 +34,8 @@
             <button type ="reset">Reset</button>
             <button type ="submit">Submit</button>
             <br><br><br>
+            <div name="lookupResultsList" id="lookupResultsList">
+            </div>
           </fieldset>
         </form>
         <form action="/adv_lookup" method="POST">
@@ -54,7 +55,6 @@
             <button type="reset">Reset</button>
             <button type="submit">Submit</button>
             <br><br><br>
-            <p name="resolveResult" id="resolveResult"></p>
           </fieldset>
         </form>
       </div>

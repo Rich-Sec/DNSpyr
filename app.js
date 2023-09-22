@@ -75,7 +75,7 @@ app.post('/adv_lookup', (req, res) =>{
         console.log(lookupResults);
         res.redirect('../');
         })
-      } else{
+      } else {
         res.redirect('../');
         return;
       }
